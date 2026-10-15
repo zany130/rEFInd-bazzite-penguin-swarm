@@ -56,7 +56,7 @@ If desired, `showtools firmware,reboot,shutdown` belongs in the *main* `refind.c
 - rEFInd shows only the currently selected OS entry's label by default; the mockup shows several simultaneously. The glass-card art, however, is part of each transparent PNG and can be reproduced on real rEFInd menus.
 - Boot icon coordinates cannot be arbitrarily fixed to the mockup. Depending on how many entries are discovered, card sizes, menu locations, and tool alignment may differ at runtime.
 - Since icons are 576px wide and the selection glow adds 72px, **large numbers of detected boot entries may overflow the row**. Reduce `big_icon_size` to 448 or 384 and test if that happens (images will be scaled automatically).
-- The wallpaper is reconstructed from the user's provided original penguin artwork and AI concept screenshot, not the source of the original photographed penguins. Background is resampled from 1672×941 to 4K, not natively 4K-rendered.
+- The wallpaper is a recolored and recomposed derivative of the penguin illustration attributed to Universal Blue's **100K Penguins!** announcement, plus the user's approved AI concept screenshot; it is not an unmodified official image. Background is resampled from 1672×941 to 4K, not natively 4K-rendered.
 
 ## Revert
 
@@ -66,8 +66,18 @@ Restore the previous include line (and previous Bazzite manual icon path if chan
 
 Requires Python 3, Pillow and NumPy. Run `python3 scripts/build_assets.py` from anywhere. It recreates the theme files from `source/` assets. `source/` is intentionally omitted from the compact install ZIP.
 
+## Source artwork: "100K Penguins!"
+
+The original penguin-swarm image supplied for this theme is attributed to the **[100K Penguins! announcement](https://universal-blue.discourse.group/t/100k-penguins/12577)** on the official Universal Blue community forum. The announcement was posted by **kylegospo on October 13, 2026**, celebrating 100,000 weekly active users of Universal Blue. That identifies the *publisher and occasion*, **not necessarily the original illustrator or full copyright owner**.
+
+This theme's `source/user-supplied-penguin-swarm.png` is the original image supplied for our redesign. The published `background.png` is a **modified, tinted, resampled and re-composited derivative** featuring the user's approved glowing planetary horizon. The accompanying concept screenshots are illustrations rather than photographs or real firmware captures.
+
+**Permission status:** The announcement identifies a credible official source, but does **not explicitly specify a reuse/derivative license** for the penguin illustration. Even though the image appeared in an official project announcement, that alone does not establish permission to redistribute edited copies under the theme's MIT license. Confirm copyright ownership and derivative/redistribution permission with the Bazzite/Universal Blue team or image rights holder before treating the wallpaper as freely reusable. A source credit is useful but is **not a substitute for a license or permission**.
+
+This is an **unofficial fan/community rEFInd theme**; it is not affiliated with, sponsored by, or endorsed by Bazzite or Universal Blue. Logos and other trademarks remain the property of their respective owners.
+
 ## Authorship, sources, and licensing
 
-Inspired by Lumen's glass-card aesthetic ([Shoxjaxon Atabayev](https://github.com/shoxjaxon-atabayev/rEFInd-lumen), MIT); the layout and assets here are separately composed. Icon shadows take inspiration from BsxM1 by AlexFullmoon. The source penguin image was supplied by the user; **before public redistribution, confirm that its copyright owner permits redistribution and derivatives**. The README and Python build script are MIT-licensed; that license does not automatically apply to third-party imagery or OS trademarks. See `ATTRIBUTION.md` and `LICENSE`.
+Inspired by Lumen's glass-card aesthetic ([Shoxjaxon Atabayev](https://github.com/shoxjaxon-atabayev/rEFInd-lumen), MIT); the layout and assets here are separately composed. Icon shadows take inspiration from BsxM1 by AlexFullmoon. The source penguin image was supplied by the user and traced to the official **100K Penguins!** forum announcement. **The announcement does not state a clear redistribution/derivatives license; obtain permission or confirm the rights before redistributing the modified wallpaper.** The README and Python build script are MIT-licensed; that license does not automatically apply to third-party imagery or OS trademarks. See `ATTRIBUTION.md` and `LICENSE`.
 
 This theme is not affiliated with or endorsed by Bazzite, Universal Blue, Microsoft, or the creators of other rEFInd themes.
