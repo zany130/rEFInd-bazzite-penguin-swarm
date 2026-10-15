@@ -8,7 +8,7 @@ An experimental, 4K Bazzite rEFInd theme inspired by the approved **Penguin Swar
 
 ## What is included
 
-- `background.png`: 3840×2160 RGB wallpaper rebuilt **from the approved screenshot**. The unoccluded header, penguins, foreground, and planetary horizon are preserved; only areas blocked by mockup cards and labels are reconstructed. No frozen menu icons are retained.
+- `background.png`: 3840×2160 RGB clean composited penguin background with **no frozen menu icons, glass cards or boot labels**.
 - `icons/os_bazzite.png`, `os_win.png`, `os_win11.png`, `os_windows.png`: 576×576 RGBA transparent glass-card icons for Bazzite and Windows.
 - `icons/os_shell.png` / `os_rescue.png`: optional 576×576 icons. These **do not create a working boot menu entry by themselves**.
 - `icons/func_firmware.png`, `func_reset.png`, `func_shutdown.png`: 96×96 utility buttons for built-in rEFInd functions.
@@ -16,12 +16,6 @@ An experimental, 4K Bazzite rEFInd theme inspired by the approved **Penguin Swar
 - `selection_small.png`: 128×128 transparent glow for selected utility buttons.
 - `screenshots/`: original approved mockup and an illustrative composite preview.
 - `source/`: approved source files and reconstructed lower-res background; not needed on your EFI partition.
-
-## Approved-concept background correction
-
-The original `background.png` was too different from `screenshots/approved-concept.png`: the initial generator rebuilt almost the entire middle and lower scene, introducing an unnatural crowd of small penguins in front of the planet. The revised generator uses the **approved concept as the primary image** and preserves every unobstructed portion of it. Only the four big card/label overlays and the three small tool controls are replaced with blended, source-derived artwork. This is a clean *background*, not a frozen UI screenshot or a pixel-perfect recovery of the obscured areas.
-
-The GitHub Actions workflow on this fix branch regenerates the PNG assets reproducibly from the files already checked in. Inspect `background.png` alongside the approved concept before merging or using this for an installer release. The preview under `screenshots/asset-composition-preview.png` may predate the rebuild; it should not be mistaken for an actual firmware screenshot.
 
 ## Installation (existing working rEFInd installation only)
 
@@ -70,7 +64,7 @@ Restore the previous include line (and previous Bazzite manual icon path if chan
 
 ## Building from source
 
-Requires Python 3, Pillow and NumPy. Run `python3 scripts/build_assets.py` from anywhere. It uses `scripts/rebuild_approved_background.py` to restore the approved composition rather than the earlier regenerated all-over penguin collage. To rebuild *only* the wallpaper, run `python3 scripts/rebuild_approved_background.py`. The image regions hidden by icons in the concept cannot be recovered exactly; those regions are reconstructed from the original supplied penguin source and unobstructed dark planetary surface. `source/` is intentionally omitted from the compact install ZIP.
+Requires Python 3, Pillow and NumPy. Run `python3 scripts/build_assets.py` from anywhere. It recreates the theme files from `source/` assets. `source/` is intentionally omitted from the compact install ZIP.
 
 ## Source artwork: "100K Penguins!"
 
