@@ -1,21 +1,35 @@
 # rEFInd Bazzite Penguin Swarm
 
-An experimental, 4K Bazzite rEFInd theme inspired by the approved **Penguin Swarm** concept: dozens of penguins under blue-violet neon lighting, a glowing horizon, and four frosted blue glass-card icons. It is an alternate design to [`rEFInd-bazzite-pneaple`](https://github.com/zany130/rEFInd-bazzite-pneaple), not a replacement for rEFInd or its boot configuration.
+An experimental, 4K Bazzite rEFInd theme inspired by the approved **Penguin Swarm** concept: dozens of penguins under blue-violet neon lighting, a glowing horizon, and an alternative Shadow-rEFInd icon set with dark square OS icons and matched selection tiles. It is an alternate design to [`rEFInd-bazzite-pneaple`](https://github.com/zany130/rEFInd-bazzite-pneaple), not a replacement for rEFInd or its boot configuration.
 
-> **Status: visual installation candidate.** PNG dimensions, paths, and archive integrity are validated; it has **not been boot-tested** on actual firmware. Preview images are illustrations, **not screenshots of rEFInd**.
+> **Status: visual installation candidate (Shadow-rEFInd icon revision).** PNG dimensions, paths, and archive integrity are validated; it has **not been boot-tested** on actual firmware. Preview images are illustrations, **not screenshots of rEFInd**.
 
 ![Approved concept, illustration only](screenshots/approved-concept.png)
 
 ## What is included
 
 - `background.png`: 3840×2160 RGB clean composited penguin background with **no frozen menu icons, glass cards or boot labels**.
-- `icons/os_bazzite.png`, `os_win.png`, `os_win11.png`, `os_windows.png`: 576×576 RGBA transparent glass-card icons for Bazzite and Windows.
-- `icons/os_shell.png` / `os_rescue.png`: optional 576×576 icons. These **do not create a working boot menu entry by themselves**.
-- `icons/func_firmware.png`, `func_reset.png`, `func_shutdown.png`: 96×96 utility buttons for built-in rEFInd functions.
-- `selection_big.png`: 648×648 transparent blue outline/glow for the selected OS icon.
-- `selection_small.png`: 128×128 transparent glow for selected utility buttons.
-- `screenshots/`: original approved mockup and an illustrative composite preview.
-- `source/`: approved source files and reconstructed lower-res background; not needed on your EFI partition.
+- `icons/os_bazzite.png`: retained custom 576×576 Bazzite glass-card art, rendered at 128px because upstream Shadow-rEFInd has no `os_bazzite.png`. `icons/os_win.png`, `os_win11.png`, `os_windows.png`: original Shadow-rEFInd Windows PNGs (128×128), with aliases of the same source image.
+- `icons/os_shell.png` / `os_rescue.png`: retained custom 576×576 icons, scaled by rEFInd to 128px for optional manual OS entries. These **do not create a working boot menu entry by themselves**.
+- `icons/func_firmware.png`, `func_reset.png`, `func_shutdown.png`, `tool_shell.png` and `tool_rescue.png`: original 48×48 Shadow-rEFInd utility images.
+- `selection_big.png`: matching **144×144 Shadow-rEFInd** selection graphic for 128px OS icons.
+- `selection_small.png`: matching **64×64 Shadow-rEFInd** selection graphic for 48px utility icons.
+- `screenshots/`: original approved mockup and an **old glass-card artwork** composite preview; **neither screenshot depicts the Shadow icon variant**.
+- `source/`: approved source files and reconstructed lower-res background; not needed on your EFI partition. `third_party/Shadow-rEFInd-AGPL-3.0.txt` contains the complete upstream icon license.
+
+## Shadow-rEFInd icon update (draft)
+
+This revision imports **actual unmodified Shadow-rEFInd PNGs** (not AI-rendered copies) for Windows, firmware, reboot, shutdown, Shell and Rescue tools, and both **matching white selection graphics**. It leaves the 3840×2160 penguin-swarm wallpaper untouched.
+
+Shadow-rEFInd has **no Bazzite-specific icon**. Rather than displaying an incorrect distro logo, the earlier custom Bazzite glass-card image is retained. The earlier custom Shell and Rescue images are also retained for optional main-row entries; the new Shadow versions are `tool_shell.png` and `tool_rescue.png` for the utility row.
+
+The old mockup and composite screenshot remain **historical design previews**, not visualizations of this updated icon set. Because Shadow-rEFInd's native OS icons are 128px and utility icons 48px, the row will be much smaller than the original 576px glass-card concept. This is deliberate for a faithful first hardware test and can be revisited after a true firmware screenshot.
+
+Upstream: https://github.com/chris1111/Shadow-rEFInd
+Pinned upstream commit: `fe639d2869f59d291489c0c416c17577bd166046`
+Full upstream AGPL-3.0 license: `third_party/Shadow-rEFInd-AGPL-3.0.txt`
+
+**License caution:** The existing project's MIT license is not a blanket license for imported AGPL-3.0 images. Consult the included full AGPL text and attribution when redistributing, especially if making altered composite assets. The original penguin image's redistributability still needs confirmation.
 
 ## Installation (existing working rEFInd installation only)
 
@@ -53,9 +67,9 @@ If desired, `showtools firmware,reboot,shutdown` belongs in the *main* `refind.c
 
 ### Limitations / what differs from the mockup
 
-- rEFInd shows only the currently selected OS entry's label by default; the mockup shows several simultaneously. The glass-card art, however, is part of each transparent PNG and can be reproduced on real rEFInd menus.
+- rEFInd shows only the currently selected OS entry's label by default; the mockup shows several simultaneously. The old glass-card artwork remains only for the Bazzite and custom optional main-row icons; the remaining imported icons use Shadow-rEFInd's dark-gray visual style.
 - Boot icon coordinates cannot be arbitrarily fixed to the mockup. Depending on how many entries are discovered, card sizes, menu locations, and tool alignment may differ at runtime.
-- Since icons are 576px wide and the selection glow adds 72px, **large numbers of detected boot entries may overflow the row**. Reduce `big_icon_size` to 448 or 384 and test if that happens (images will be scaled automatically).
+- **Shadow-rEFInd is a compact, native-size 128px/48px icon set.** This revision uses `big_icon_size 128` and `small_icon_size 48` with matching upstream selections. The icons may look relatively small at 3840×2160. Test the actual firmware output before adjusting sizes, since scaling the PNGs up can soften them.
 - The wallpaper is reconstructed from the user's provided original penguin artwork and AI concept screenshot, not the source of the original photographed penguins. Background is resampled from 1672×941 to 4K, not natively 4K-rendered.
 
 ## Revert
@@ -64,10 +78,10 @@ Restore the previous include line (and previous Bazzite manual icon path if chan
 
 ## Building from source
 
-Requires Python 3, Pillow and NumPy. Run `python3 scripts/build_assets.py` from anywhere. It recreates the theme files from `source/` assets. `source/` is intentionally omitted from the compact install ZIP.
+Requires Python 3, Pillow and NumPy. Run `python3 scripts/build_assets.py` from anywhere to rebuild the penguin background only. It deliberately **does not overwrite imported Shadow-rEFInd icon or selection PNGs**, or the visual-only `theme.conf`. Use `python3 scripts/sync_shadow_icons.py` to reproduce the original icons from the pinned upstream revision using Git SHA verification. `source/` is intentionally omitted from the compact install ZIP.
 
 ## Authorship, sources, and licensing
 
-Inspired by Lumen's glass-card aesthetic ([Shoxjaxon Atabayev](https://github.com/shoxjaxon-atabayev/rEFInd-lumen), MIT); the layout and assets here are separately composed. Icon shadows take inspiration from BsxM1 by AlexFullmoon. The source penguin image was supplied by the user; **before public redistribution, confirm that its copyright owner permits redistribution and derivatives**. The README and Python build script are MIT-licensed; that license does not automatically apply to third-party imagery or OS trademarks. See `ATTRIBUTION.md` and `LICENSE`.
+Original layout inspired by Lumen's glass-card aesthetic ([Shoxjaxon Atabayev](https://github.com/shoxjaxon-atabayev/rEFInd-lumen), MIT); the Shadow-rEFInd variant redistributes original icon files from [chris1111/Shadow-rEFInd](https://github.com/chris1111/Shadow-rEFInd), which is licensed under **AGPL-3.0**. Icon shadows take inspiration from BsxM1 by AlexFullmoon. The source penguin image was supplied by the user; **its redistribution license is not verified**. The published repo currently contains that image and a derived background, which still need a provenance/licensing review independent of this icon PR. The project's existing MIT licensing does **not** cover imported Shadow-rEFInd artwork; see `third_party/Shadow-rEFInd-AGPL-3.0.txt`. Preserve the AGPL-3.0 obligations and notices when redistributing. This repo's separately originated scripts and layout remain identified as such. See `ATTRIBUTION.md` and `LICENSE`.
 
 This theme is not affiliated with or endorsed by Bazzite, Universal Blue, Microsoft, or the creators of other rEFInd themes.

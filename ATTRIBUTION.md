@@ -5,3 +5,11 @@
 - **Glass-card aesthetic**: inspired by [`rEFInd-lumen`](https://github.com/shoxjaxon-atabayev/rEFInd-lumen) (MIT), visually reimplemented using generated assets and custom Pillow drawings; no upstream source code or PNG copied.
 - **Icon-shadow aesthetic**: inspired by [`refind-bsxm1-theme`](https://github.com/AlexFullmoon/refind-bsxm1-theme); no upstream assets copied.
 - **Bazzite and Windows marks**: trademarks/logos remain with their owners. This is an unofficial fan theme.
+
+## Shadow-rEFInd icon variant
+
+This branch imports original, unchanged PNGs from [chris1111/Shadow-rEFInd](https://github.com/chris1111/Shadow-rEFInd) pinned at commit `fe639d2869f59d291489c0c416c17577bd166046`. Upstream declares **GNU AGPL-3.0**. The full license appears in `third_party/Shadow-rEFInd-AGPL-3.0.txt`.
+
+Imported paths: `icons/os_win.png` (also aliased as `os_win11.png` and `os_windows.png`), `icons/func_firmware.png`, `icons/func_reset.png`, `icons/func_shutdown.png`, `icons/tool_shell.png`, `icons/tool_rescue.png`, `selection_big.png`, `selection_small.png`.
+
+The custom `os_bazzite.png` was **not** replaced, because Shadow-rEFInd does not supply Bazzite art; neither were the optional custom main-row Shell and Rescue icons. The penguin artwork provenance concern above remains unresolved.
