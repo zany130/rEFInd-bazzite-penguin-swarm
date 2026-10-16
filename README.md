@@ -4,7 +4,7 @@ An experimental, 4K Bazzite rEFInd theme inspired by the approved **Penguin Swar
 
 > **Status: visual installation candidate (Shadow-rEFInd icon revision).** PNG dimensions, paths, and archive integrity are validated; it has **not been boot-tested** on actual firmware. Preview images are illustrations, **not screenshots of rEFInd**.
 
-![Approved concept, illustration only](screenshots/approved-concept.png)
+![QEMU screenshot (not a firmware screenshot and may have QEMU artifacts that won't be present on a live system)](screenshots/preview.png)
 
 ## What is included
 
