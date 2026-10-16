@@ -1,0 +1,49 @@
+name: One-time Penguin subtitle cleanup
+on:
+  push:
+    branches:
+      - fix/penguin-concept-only-vivid-horizon
+permissions:
+  contents: write
+jobs:
+  clean:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet pillow numpy opencv-python-headless
+      - name: Erase only the Concept word from the original background
+        shell: bash
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          import cv2, numpy as np
+
+          p = "background.png"
+          original = np.asarray(Image.open(p).convert("RGB")).copy()
+          h, w = original.shape[:2]
+          x0, y0, x1, y1 = 989, 275, 1290, 354
+          mask = np.zeros((h, w), np.uint8)
+          cv2.rectangle(mask, (x0, y0), (x1, y1), 255, -1)
+          pad = 110
+          px, qx = max(0, x0 - pad), min(w, x1 + pad)
+          py, qy = max(0, y0 - pad), min(h, y1 + pad)
+          original[py:qy, px:qx] = cv2.inpaint(
+              original[py:qy, px:qx], mask[py:qy, px:qx], 8, cv2.INPAINT_TELEA
+          )
+          Image.fromarray(original).save(p, compress_level=6)
+          PY
+      - name: Commit background image only
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add background.png
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Remove Concept from Penguin Swarm subtitle without changing horizon"
+          git push origin HEAD:fix/penguin-concept-only-vivid-horizon
