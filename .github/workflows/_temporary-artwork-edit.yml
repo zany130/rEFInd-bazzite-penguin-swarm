@@ -22,16 +22,16 @@ jobs:
         shell: bash
         run: |
           python - <<'PY'
-            from PIL import Image
-            import numpy as np
-            p="background.png"
-            a=np.asarray(Image.open(p).convert("RGB")).copy()
-            h,w=a.shape[:2]
-            yy=np.arange(h,dtype=np.float32)[:,None]
-            xx=np.arange(w,dtype=np.float32)[None,:]
-            shadow=(.84*np.exp(-.5*((yy-1552)/38)**2)*np.exp(-.5*((xx-1920)/820)**2)).astype(np.float32)
-            a=np.clip(a.astype(np.float32)*(1-shadow[:,:,None]),0,255).astype(np.uint8)
-            Image.fromarray(a).save(p,compress_level=6)
+          from PIL import Image
+          import numpy as np
+          p="background.png"
+          a=np.asarray(Image.open(p).convert("RGB")).copy()
+          h,w=a.shape[:2]
+          yy=np.arange(h,dtype=np.float32)[:,None]
+          xx=np.arange(w,dtype=np.float32)[None,:]
+          shadow=(.84*np.exp(-.5*((yy-1552)/38)**2)*np.exp(-.5*((xx-1920)/820)**2)).astype(np.float32)
+          a=np.clip(a.astype(np.float32)*(1-shadow[:,:,None]),0,255).astype(np.uint8)
+          Image.fromarray(a).save(p,compress_level=6)
           PY
       - name: Commit updated PNG without build scripts
         shell: bash
