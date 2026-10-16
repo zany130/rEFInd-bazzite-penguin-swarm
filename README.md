@@ -34,7 +34,7 @@ The user-approved Penguin Swarm title is embedded in the wallpaper; the word “
    git clone https://github.com/zany130/rEFInd-bazzite-penguin-swarm.git
    cd rEFInd-bazzite-penguin-swarm
    sudo mkdir -p /boot/efi/EFI/refind/themes/rEFInd-bazzite-penguin-swarm
-   sudo cp -a background.png theme.conf selection_big.png selection_small.png icons /boot/efi/EFI/refind/themes/rEFInd-bazzite-penguin-swarm/
+   sudo cp -r background.png theme.conf selection_big.png selection_small.png icons /boot/efi/EFI/refind/themes/rEFInd-bazzite-penguin-swarm/
    ```
 
 3. In your existing `/boot/efi/EFI/refind/refind.conf`, **replace the currently active theme include**, or add one if none exists. Keep only one active theme include:
