@@ -1,26 +1,31 @@
-# Source and attribution notes
+# Credits, asset provenance and license scope
 
-- **Original penguin swarm artwork**: supplied by the user (`source/user-supplied-penguin-swarm.png`) and traced to the official [Universal Blue "100K Penguins!" announcement](https://universal-blue.discourse.group/t/100k-penguins/12577), posted by **kylegospo, October 13, 2026**. This identifies the official publication, **not necessarily who drew it**. The post does not provide an explicit reuse, remix, or redistribution license for the image. Confirm creator/rights-holder and permission before treating the image or derivatives as freely distributable.
-- **Approved Penguin Swarm boot-menu concept**: user-approved AI-generated mockup (`screenshots/approved-concept.png`). The clean background is a newly composed derivative and is not a literal unmodified mockup.
-- **Glass-card aesthetic**: inspired by [`rEFInd-lumen`](https://github.com/shoxjaxon-atabayev/rEFInd-lumen) (MIT), visually reimplemented using generated assets and custom Pillow drawings; no upstream source code or PNG copied.
-- **Icon-shadow aesthetic**: inspired by [`refind-bsxm1-theme`](https://github.com/AlexFullmoon/refind-bsxm1-theme); no upstream assets copied.
-- **Bazzite and Windows marks**: trademarks/logos remain with their owners. This is an unofficial fan theme.
+This repository is an **unofficial rEFInd theme**, not an official or endorsed release of Bazzite, Universal Blue, Microsoft, rEFInd, or the other projects cited below. Names, artwork and trademarks belong to their respective rights holders.
 
-## Shadow-rEFInd icon variant
+## Shadow-rEFInd graphics (GNU AGPL-3.0)
 
-This branch imports original, unchanged PNGs from [chris1111/Shadow-rEFInd](https://github.com/chris1111/Shadow-rEFInd) pinned at commit `fe639d2869f59d291489c0c416c17577bd166046`. Upstream declares **GNU AGPL-3.0**. The full license appears in `third_party/Shadow-rEFInd-AGPL-3.0.txt`.
+The rEFInd icon collection is sourced from [chris1111/Shadow-rEFInd](https://github.com/chris1111/Shadow-rEFInd) at pinned Git revision `fe639d2869f59d291489c0c416c17577bd166046`.
 
-Imported paths: `icons/os_win.png` (also aliased as `os_win11.png` and `os_windows.png`), `icons/func_firmware.png`, `icons/func_reset.png`, `icons/func_shutdown.png`, `icons/tool_shell.png`, `icons/tool_rescue.png`, `selection_big.png`, `selection_small.png`.
+- Imported original PNGs in `icons/` cover the upstream OS icon family (`os_*`), functional icons (`func_*`), utility icons (`tool_*`), volume badges (`vol_*`), boot labels (`boot_*`), and navigation/decorative icons. The two selection images are shipped as `selection_big.png` and `selection_small.png`; equivalent copies also appear under `icons/`.
+- **Upstream asset bytes are unmodified** for their corresponding filenames. Extra aliases such as `icons/os_win11.png` (and `os_win10.png` where present) reuse the corresponding Shadow Windows icon image to support common rEFInd icon names. The custom `icons/os_bazzite.png` was made for this theme collection and is **not** a Shadow-rEFInd original.
+- Imported assets remain under Shadow-rEFInd's **GNU AGPL-3.0** license. Preserve the source attribution and the complete license notice in [third_party/Shadow-rEFInd-AGPL-3.0.txt](third_party/Shadow-rEFInd-AGPL-3.0.txt) when redistributing.
+- The repository's root `LICENSE` applies **MIT only to independently originated project material**, not to imported AGPL-3.0 graphics; the MIT license does not supersede AGPL-3.0 terms.
 
-The custom `os_bazzite.png` was **not** replaced, because Shadow-rEFInd does not supply Bazzite art; neither were the optional custom main-row Shell and Rescue icons. The penguin artwork provenance concern above remains unresolved.
-## Penguin-swarm image: source and reuse status
+## Penguin Swarm illustration and wallpaper
 
-**Official publication:** [100K Penguins! — Universal Blue community announcement](https://universal-blue.discourse.group/t/100k-penguins/12577), posted by `kylegospo` on October 13, 2026.
+- **Original illustration:** `source/user-supplied-penguin-swarm.png`, supplied by the theme creator; the image was traced to Universal Blue's [“100K Penguins!” announcement](https://universal-blue.discourse.group/t/100k-penguins/12577) published by `kylegospo` on **October 13, 2026**.
+- **What that citation establishes:** the original image appeared in an official Bazzite/Universal Blue forum announcement. It **does not** establish that the post author illustrated it, owns all rights, or has granted reuse permission.
+- **Modification:** `background.png` is an edited, tinted, resampled and recomposited Penguin Swarm wallpaper with the user-approved planetary horizon and final “Penguin Swarm” heading. `source/clean-background-1672x941.png` and other `source/` PNGs document earlier compositing inputs and artwork.
+- **Screenshots:** `screenshots/approved-concept.png` is a historical AI-assisted concept. `screenshots/asset-composition-preview.png` shows earlier artwork layout. `screenshots/preview.png` captures actual rEFInd running in **QEMU/OVMF**, not physical firmware.
+- **Rights status:** neither the original illustrator/rights holder nor a license expressly allowing redistribution or adaptation has been verified. **Source credit is not permission.** Contact the copyright holder or Universal Blue/Bazzite project before asserting commercial use, redistribution or the derivative's open-source license status.
 
-The background image in this repository was supplied for the user-approved theme and was converted into an edited and re-composited 4K neon/penguin/planet-horizon design. It is **not** an unchanged image from the announcement.
+## Inspiration
 
-**Author attribution vs publisher:** The Universal Blue announcement is a reliable reference for where the artwork appeared. No independent verification of the illustrator's identity or the image-specific copyright owner has been made. Avoid claiming Kyle Gospodnetich personally drew the image.
+- [rEFInd Lumen](https://github.com/shoxjaxon-atabayev/rEFInd-lumen), Shoxjaxon Atabayev (MIT): visual inspiration for glossy/menu-card treatment. No upstream Lumen images or code are claimed to have been copied.
+- [BsxM1](https://github.com/AlexFullmoon/refind-bsxm1-theme), AlexFullmoon: inspiration for icon-shadow treatment, not a copied asset source.
 
-**License status:** No explicit image-specific license granting redistribution or adaptations has been verified from this announcement. The theme's MIT license covers independently written project material; it does **not** automatically cover the source penguin illustration or modifications based on it. Crediting the source is important but does not itself establish permissions. Before treating the image as freely distributable, request confirmation from the original creator/rightsholder or Bazzite/Universal Blue team.
+## Logo and permission caveats
 
-**Trademark/endorsement:** Unofficial fan rEFInd boot theme. Not affiliated with, sponsored by, or endorsed by Bazzite or Universal Blue. Names, logos, and trademarks belong to their respective owners.
+Bazzite, Universal Blue, Microsoft, Windows, and other third-party identifiers are the property of their respective owners. The custom Bazzite icon is not an official branding-license grant. This documentation records known sources and license terms; it does not imply consent from rightsholders or resolve any specifically unverified wallpaper permissions.
+
+See the project [README](README.md) for safe installation and QEMU-versus-hardware testing distinctions.
